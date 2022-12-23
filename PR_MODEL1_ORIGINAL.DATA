@@ -1,0 +1,146 @@
+------------------------------------------------------------------------------------------ 
+RUNSPEC
+------------------------------------------------------------------------------------------
+ 
+TITLE
+RESERVOIR SIMULATION BY YANNICK YAKAN & LUIS NAVARRO
+ 
+START
+ 1 'JAN' 2015 /
+ 
+METRIC
+GAS
+OIL
+WATER
+DISGAS
+ 
+BLACKOIL
+ 
+NSTACK
+ 200 /
+ 
+GRIDOPTS
+ 'YES' 0 0 /
+ 
+MONITOR
+ 
+MSGFILE
+ 1 /
+ 
+FAULTDIM
+ 24 /
+ 
+DIMENS
+ 36 51 18 /
+ 
+EQLDIMS
+ 3 100 100 1 20 /
+ 
+REGDIMS
+ 2 1 0 10 /
+ 
+TABDIMS
+ 4 1 20 20 2 20 20 1 /
+ 
+WELLDIMS
+ 25 25 2 25 /
+ 
+ UNIFOUT
+ 
+ ----------------------------------------------------------------------------
+GRID
+ ----------------------------------------------------------------------------
+GRIDFILE
+ 0 1 /
+ 
+INIT
+ 
+ECHO
+RPTGRID
+NNC /
+
+-- GRID DIMENSIONS
+INCLUDE
+'./INCL/GGO.INC'  /
+
+-- ACTNUM KEYWORD
+INCLUDE
+'./INCL/GPRO.INC'  /
+
+-- FAULT PROPERTIES
+INCLUDE
+'./INCL/GOTH.INC'  /
+    
+
+ ----------------------------------------------------------------------------
+PROPS
+ ----------------------------------------------------------------------------
+
+-- OIL, GAS & ROCK COMPRESIBILTY PROPERTIES
+INCLUDE
+'./INCL/PVT.INC'  /
+
+-- SATURATION FUNCTIONS
+INCLUDE
+'./INCL/SCAL.INC'  /
+
+-- Hysteresis input
+EHYSTR
+   0.1   0  0.1 1* KR /
+
+----------------------------------------------------------------------------
+REGIONS
+----------------------------------------------------------------------------
+
+-- REGIONS OF EACH CELL
+INCLUDE
+'./INCL/REG.INC'  /
+
+ ----------------------------------------------------------------------------
+SOLUTION
+ ----------------------------------------------------------------------------
+
+ECHO
+EQUIL
+    3200     446    3231       0     500       0       1       0       0      
+/ 
+    3200   446.3    2900       0     500       0       1       0       0      
+/
+    3200   446.3    3247       0     500       0       1       0       0      
+/
+PBVD
+-- Bubble Point v Depth
+          3100      258.23
+          3231      258.23
+/
+          3100      258.23
+          3231      258.23
+/
+          3100      258.23
+          3247      258.23
+/
+ECHO
+RPTRST
+-- Restart File Output Control
+'BASIC=2' /
+RPTSOL
+-- Initialisation Print Output
+ 'PRES'  'SOIL'  'SWAT'  'SGAS'  'RESTART=2'  'FIP=3'  'EQUIL'   /
+
+END --FOR GEOLOGICAL PROPERTIES CHECK
+----------------------------------------------------------------------------
+SUMMARY
+ ----------------------------------------------------------------------------
+
+INCLUDE
+'./INCL/summary_general.INC'  /
+
+----------------------------------------------------------------------------
+SCHEDULE
+ ----------------------------------------------------------------------------
+
+INCLUDE
+'./INCL/NewDevelopmentPlan_SCH.INC'  /
+
+ 
+END

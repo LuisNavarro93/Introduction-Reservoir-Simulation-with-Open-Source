@@ -1,0 +1,28 @@
+# ----------------------------------------------------------------------------
+# INPUT AND OUTPUT OPTIONS
+# ----------------------------------------------------------------------------
+#
+# Input File
+#
+ecl-deck-file-name = PR_MODEL1_NWELLS_V1.DATA
+#
+# Output and Output Directory
+#
+output-dir=CASE_NWELLS_V1
+#
+# ----------------------------------------------------------------------------
+# NEWTON SOLVER PARAMETER
+# ----------------------------------------------------------------------------
+#
+# Define Numerical Tolerances
+#
+tolerance-cnv=.1
+tolerance-mb=1e-2
+#
+# Set Min Newtonian Solver iterations to 1 and Max to 15
+#
+flow-newton-min-iterations=1
+flow-newton-max-iterations=5
+
+#
+# ---------------------------------
